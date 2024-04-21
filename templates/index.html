@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="m-1 text-end">
+        <a href="/todo/" class="btn btn-info">Yangi todo list ochish</a>
+    </div>
+
+    <table class="table table-bordered table-responsive">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Deadline</th>
+                <th scope="col">Done</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in objects %}
+                <tr>
+                    <th scope="row">{{ todo.id }}</th>
+                    <td>{{ todo.title}}</td>
+                    <td>{{ todo.priority|capfirst }}</td>
+                    <td>
+                        {% if todo.deadline %}
+                            {{ todo.deadline|date:"M d, Y" }}
+                        {% else %}
+                            <p class="text-danger">Muddat tanlanmagan</p>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        {% if todo.is_done %}
+                            <i class="fas fa-circle-check fs-4 text-success"></i>
+                        {% else %}
+                            <i class="fas fa-circle-xmark fs-4 text-danger"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/done/{{todo.id}}/" class="btn btn-outline-primary">Submit</a>
+                        <a href="/todo/{{todo.id}}/" class="btn btn-outline-warning">Change</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
