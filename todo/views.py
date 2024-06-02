@@ -20,6 +20,7 @@ def index(request):
 
 def add_todo(request):
     form = TodoForm(request.POST or None)
+
     if form.is_valid():
         form.save()
 
@@ -34,6 +35,7 @@ def add_todo(request):
 def todo_detail(request, pk):  # bu funksiya ham ko'rish uchun, ham o'zgartirish uchun ishlaydi!
     todo = get_object_or_404(Todo, id=pk)
     form = TodoForm(request.POST or None, instance=todo)
+
     if form.is_valid():
         form.save()
 
@@ -47,6 +49,7 @@ def todo_detail(request, pk):  # bu funksiya ham ko'rish uchun, ham o'zgartirish
 
 def is_done(request, pk):
     todo = get_object_or_404(Todo, id=pk)
+    
     if todo.is_done:
         todo.is_done = False
     else:
