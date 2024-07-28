@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .form import TodoForm
-from .models import Todo
+
+from todo.form import TodoForm
+
+from todo.models import Todo
 
 
 def index(request):
@@ -16,7 +18,6 @@ def index(request):
     }
 
     return render(request, 'index.html', context)
-
 
 def add_todo(request):
     form = TodoForm(request.POST or None)
@@ -54,6 +55,7 @@ def is_done(request, pk):
         todo.is_done = False
     else:
         todo.is_done = True
+        
     todo.save()
     
     return redirect('/')
