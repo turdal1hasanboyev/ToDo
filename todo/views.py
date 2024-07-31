@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from todo.form import TodoForm
-
 from todo.models import Todo
 
 
@@ -35,6 +34,7 @@ def add_todo(request):
 
 def todo_detail(request, pk):  # bu funksiya ham ko'rish uchun, ham o'zgartirish uchun ishlaydi!
     todo = get_object_or_404(Todo, id=pk)
+    
     form = TodoForm(request.POST or None, instance=todo)
 
     if form.is_valid():
