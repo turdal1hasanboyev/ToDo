@@ -53,6 +53,7 @@ def is_done(request, pk):
     
     if todo.is_done:
         todo.is_done = False
+        
     else:
         todo.is_done = True
         
