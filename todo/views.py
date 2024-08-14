@@ -7,16 +7,12 @@ from todo.models import Todo
 def index(request):
     query = request.GET.get('query')
 
-    objects = Todo.objects.all().order_by('-id')
+    objects = Todo.objects.all().order_by('id')
 
     if query:
         objects = objects.filter(title__icontains=query)
 
-    context = {
-        "objects": objects
-    }
-
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', {"objects": objects})
 
 def add_todo(request):
     form = TodoForm(request.POST or None)
@@ -24,13 +20,9 @@ def add_todo(request):
     if form.is_valid():
         form.save()
 
-        return redirect('/')
+        return redirect('main')
     
-    context = {
-        "form": form
-    }
-
-    return render(request, 'todo.html', context)
+    return render(request, 'todo.html', {"form": form})
 
 def todo_detail(request, pk):  # bu funksiya ham ko'rish uchun, ham o'zgartirish uchun ishlaydi!
     todo = get_object_or_404(Todo, id=pk)
@@ -40,15 +32,11 @@ def todo_detail(request, pk):  # bu funksiya ham ko'rish uchun, ham o'zgartirish
     if form.is_valid():
         form.save()
 
-        return redirect('/')
+        return redirect('main')
 
-    context = {
-        "form": form
-    }
+    return render(request, 'todo.html', {"form": form})
 
-    return render(request, 'todo.html', context)
-
-def is_done(request, pk):
+def is_done(pk):
     todo = get_object_or_404(Todo, id=pk)
     
     if todo.is_done:
@@ -59,4 +47,4 @@ def is_done(request, pk):
         
     todo.save()
     
-    return redirect('/')
+    return redirect('main')

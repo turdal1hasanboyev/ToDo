@@ -18,11 +18,13 @@ class TodoForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TodoForm, self).__init__(*args, **kwargs)
+
         for field_name, field in self.fields.items():
             print(field.widget.attrs, "Field")
 
             if field_name == 'is_done':
                 field.widget.attrs['class'] = ''
+                
             else:
                 field.widget.attrs['class'] = 'form-control'
                 
