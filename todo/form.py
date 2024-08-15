@@ -13,7 +13,7 @@ class TodoForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['updated_at', 'created_at', 'is_done']
         widgets = {
-            'deadline': DateInput()
+            'deadline': DateInput(),
         }
 
     def __init__(self, *args, **kwargs):

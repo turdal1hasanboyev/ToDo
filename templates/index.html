@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <div class="container mt-5">
@@ -23,7 +25,7 @@
             {% for todo in objects %}
                 <tr>
                     <th scope="row">{{ todo.id }}</th>
-                    <td>{{ todo.title}}</td>
+                    <td>{{ todo.title }}</td>
                     <td>{{ todo.priority|capfirst }}</td>
                     <td>
                         {% if todo.deadline %}

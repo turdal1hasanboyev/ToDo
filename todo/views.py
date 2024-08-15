@@ -36,7 +36,7 @@ def todo_detail(request, pk):  # bu funksiya ham ko'rish uchun, ham o'zgartirish
 
     return render(request, 'todo.html', {"form": form})
 
-def is_done(pk):
+def is_done(request, pk):
     todo = get_object_or_404(Todo, id=pk)
     
     if todo.is_done:
