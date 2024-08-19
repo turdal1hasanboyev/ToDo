@@ -1,6 +1,6 @@
 from django import forms
 
-from todo.models import Todo
+from .models import Todo
 
 
 class DateInput(forms.DateInput):

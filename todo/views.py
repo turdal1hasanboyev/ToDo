@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from todo.form import TodoForm
-from todo.models import Todo
+from .form import TodoForm
+from .models import Todo
 
 
 def index(request):
